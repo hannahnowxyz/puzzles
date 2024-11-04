@@ -1,3 +1,5 @@
+# https://adventofcode.com/2023/day/7
+
 # interpret each hand string as a number in base 13,
 # adding the hand's type as a leading digit that dominates the face values.
 # then convert each hand to base 10 and sort.
