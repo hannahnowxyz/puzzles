@@ -1,4 +1,0 @@
-https://projecteuler.net/problem=54
-https://projecteuler.net/problem=44
-https://projecteuler.net/problem=81
-https://projecteuler.net/problem=69
