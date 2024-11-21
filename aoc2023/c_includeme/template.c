@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
 
     // TODO compute solution
 
+    free(lines);
     free(input);
     printf("solution: %d\n", 0);
     return 0;

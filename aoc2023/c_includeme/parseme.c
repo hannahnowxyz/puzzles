@@ -11,7 +11,6 @@ int main(int argc, char* argv[])
     size_t max_tokens = 0;
 #endif
     {// prevent leaking variables
-    
     // read entire input file in memory
     FILE* input_file = fopen("input.txt", "rb");
     if (input_file == NULL) {
@@ -30,14 +29,12 @@ int main(int argc, char* argv[])
     input[input_size] = '\0';
     num_lines = input[input_size - 1] != '\n';
     size_t parse_index = input_size - 1;
-    {
-    unsigned char is_newline = 0;
     while (parse_index) {
-	is_newline = input[parse_index] == '\n';
+	unsigned char is_newline = input[parse_index] == '\n';
 	input[parse_index] &= is_newline - 1;
 	num_lines += is_newline;
 	parse_index--;
-    }}
+    }
 
     // initialize line struct array
     lines = malloc(num_lines*sizeof(struct line));
@@ -45,17 +42,18 @@ int main(int argc, char* argv[])
 	lines[i].cstr_ptr = &input[parse_index];
 	lines[i].length = 0;
 	lines[i].num_tokens = 1;
+	bool new_token = true;
 	while (input[parse_index]) {
-	    lines[i].num_tokens += input[parse_index] == delim;
+	    lines[i].num_tokens += new_token && input[parse_index] == delim;
 	    lines[i].length++;
 	    parse_index++;
+	    new_token = input[parse_index - 1] != delim;
 	}
 	if (lines[i].num_tokens > max_tokens) {
 	    max_tokens = lines[i].num_tokens;
 	}
 	parse_index++;
     }
-
     }// prevent leaking variables
 #ifndef AOC_MAIN
     printf(
@@ -71,6 +69,7 @@ int main(int argc, char* argv[])
 	    lines[i].cstr_ptr
 	);
     }
+    free(lines);
     free(input);
     return 0;
 }
