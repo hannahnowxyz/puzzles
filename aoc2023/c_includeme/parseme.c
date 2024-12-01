@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
     for (size_t i = 0; i < num_lines; i++) {
 	lines[i].cstr_ptr = &input[parse_index];
 	lines[i].length = 0;
-	lines[i].num_tokens = 1;
+	lines[i].num_tokens = *lines[i].cstr_ptr != '\0';
 	bool new_token = true;
 	while (input[parse_index]) {
 	    lines[i].num_tokens += new_token && input[parse_index] == delim;
@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
 	printf(
 	    "(%3d tokens, %3d bytes) \"%s\"\n",
 	    lines[i].num_tokens,
-	    lines[i].length,
+	    lines[i].length + 1,
 	    lines[i].cstr_ptr
 	);
     }
