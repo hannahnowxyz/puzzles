@@ -4,7 +4,7 @@
 int u64_cmp(const void* a, const void* b) {
     uint64_t au = *(const uint64_t*)a;
     uint64_t bu = *(const uint64_t*)b;
-    return 1 - 2*(au < bu);
+    return 1 - (au < bu)<<1;
 }
 
 int main(int argc, char* argv[])
@@ -27,7 +27,8 @@ int main(int argc, char* argv[])
 
     uint64_t total_distance = 0;
     for (size_t i = 0; i < num_lines; i++) {
-        uint64_t a = list_a[i]; uint64_t b = list_b[i];
+        uint64_t a = list_a[i];
+	uint64_t b = list_b[i];
         if (a > b) total_distance += a - b;
         else total_distance += b - a;
     }
