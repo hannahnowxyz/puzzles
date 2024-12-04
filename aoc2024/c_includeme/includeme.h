@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
+#include <stdarg.h>
 #include "parseme.h"
-#define ARRLEN(arr) sizeof(arr)/sizeof(arr[0])
+#define ARRLEN(arr) sizeof(arr)/sizeof((arr)[0])
 #endif

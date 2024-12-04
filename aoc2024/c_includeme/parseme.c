@@ -3,19 +3,18 @@
 #include "includeme.h"
 int main(int argc, char* argv[])
 {
-    // must be pre-defined in including file
-    unsigned char* input = NULL;
+#endif
+    char* input = NULL;
     struct line* lines = NULL;
     size_t num_lines = 0;
-    unsigned char delim = ' ';
+    const char delim = ' ';
     size_t max_tokens = 0;
-#endif
     {// prevent leaking variables
     // read entire input file in memory
     FILE* input_file = fopen("input.txt", "rb");
     if (input_file == NULL) {
-    	printf("could not open input.txt");
-	exit(1);
+    	printf("could not open input.txt\n");
+	exit(EXIT_FAILURE);
     }
     fseek(input_file, 0, SEEK_END);
     size_t input_size = ftell(input_file);

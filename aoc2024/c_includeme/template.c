@@ -4,11 +4,6 @@
 int main(int argc, char* argv[])
 {
     // read input
-    unsigned char* input = NULL;
-    struct line* lines = NULL;
-    size_t num_lines = 0;
-    unsigned char delim = ' ';
-    size_t max_tokens = 0;
     #include "../c_includeme/parseme.c"
 
     // TODO compute solution
