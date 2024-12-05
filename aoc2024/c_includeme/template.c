@@ -3,13 +3,15 @@
 
 int main(int argc, char* argv[])
 {
-    // read input
-    #include "../c_includeme/parseme.c"
-
-    // TODO compute solution
-
-    free(lines);
-    free(input);
-    printf("solution: %d\n", 0);
-    return 0;
+	// read input
+	const char* filepath = "input.txt";
+	const char delim = ' ';
+	#include "../c_includeme/parseme.c"
+	
+	// TODO compute solution
+	
+	free(lines);
+	free(input);
+	printf("solution: %d\n", 0);
+	return 0;
 }
