@@ -1,5 +1,4 @@
-#define AOC_MAIN
-#include "../c_includeme/includeme.h"
+#include "../c-parsley/includeme.h"
 
 bool is_report_safe(int* report, size_t report_len)
 {
@@ -15,9 +14,14 @@ bool is_report_safe(int* report, size_t report_len)
 int main(int argc, char* argv[])
 {
 	// read input
-	const char* filepath = "input.txt";
-	const char delim = ' ';
-	#include "../c_includeme/parseme.c"
+	char* input;
+	size_t input_size;
+	read_file("input.txt", &input, &input_size);
+	
+	struct line* lines;
+	size_t num_lines;
+	size_t max_tokens;
+	parse_input(input, input_size, '\n', ' ', &lines, &num_lines, &max_tokens);
 	
 	// brute force solution
 	size_t num_safe_reports = 0;
@@ -28,7 +32,7 @@ int main(int argc, char* argv[])
 		int report[n];
 		sscanf(parse_pos, "%d", &report[0]);
 		for (size_t t = 1; t < n; t++) {
-			NEXT_TOKEN(parse_pos);
+			parse_pos = strchr(parse_pos, ' ') + 1;
 			sscanf(parse_pos, "%d", &report[t]);
 		}
 		

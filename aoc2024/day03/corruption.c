@@ -1,13 +1,11 @@
-#define AOC_MAIN
-#include "../c_includeme/includeme.h"
+#include "../c-parsley/includeme.h"
 
 int main(int argc, char* argv[])
 {
 	// read input
-	const char* filepath = "input.txt";
-	size_t input_size;
 	char* input;
-	#include "../c_includeme/readme.c"
+	size_t input_size;
+	read_file("input.txt", &input, &input_size);
 	
 	char* mul = "mul(";
 	int64_t total = 0;

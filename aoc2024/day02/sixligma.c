@@ -1,12 +1,16 @@
-#define AOC_MAIN
-#include "../c_includeme/includeme.h"
+#include "../c-parsley/includeme.h"
 
 int main(int argc, char* argv[])
 {
 	// read input
-	const char* filepath = "input.txt";
-	const char delim = ' ';
-	#include "../c_includeme/parseme.c"
+	char* input;
+	size_t input_size;
+	read_file("input.txt", &input, &input_size);
+	
+	struct line* lines;
+	size_t num_lines;
+	size_t max_tokens;
+	parse_input(input, input_size, '\n', ' ', &lines, &num_lines, &max_tokens);
 	
 	size_t num_unsafe = 0;
 	for (size_t i = 0; i < num_lines; i++)
@@ -24,7 +28,7 @@ int main(int argc, char* argv[])
 		}
 		
 		for (size_t t = 0; t < n - 1; t++) {
-			NEXT_TOKEN(parse_pos);
+			parse_pos = strchr(parse_pos, ' ') + 1;
 			sscanf(parse_pos, "%d", &report[t + 1]);
 			int delta = (report[t + 1] - report[t])*monotonic_sign;
 			if (delta <= 0 || delta > 3) {
