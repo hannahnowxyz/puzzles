@@ -16,6 +16,7 @@ void read_file(const char* filepath, char** out_data, size_t* out_size)
 	char* input = malloc(input_size + 1);
 	fread(input, sizeof(char), input_size, input_file);
 	fclose(input_file);
+	input[input_size] = '\0';
 
 	*out_data = input;
 	*out_size = input_size;
@@ -37,7 +38,6 @@ void parse_input(
 	size_t max_tokens = 0;
 	
 	// replace all newlines with nulls
-	input[input_size] = '\0';
 	num_lines = input[input_size - 1] != line_delim;
 	size_t parse_index = input_size - 1;
 	while (parse_index) {
